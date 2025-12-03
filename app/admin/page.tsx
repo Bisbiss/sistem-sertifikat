@@ -33,7 +33,10 @@ export default function AdminLogin() {
     return (
         <div className="min-h-screen flex items-center justify-center bg-linear-to-br from-slate-900 to-slate-800 px-4">
             <div className="max-w-md w-full bg-white rounded-2xl shadow-2xl overflow-hidden">
-                <div className="bg-blue-600 px-8 py-6">
+                <div className="bg-blue-600 px-8 py-6 flex flex-col items-center">
+                    <div className="bg-white p-2 rounded-full mb-4 shadow-sm">
+                        <img src="/logo.png" alt="Logo" className="h-12 w-auto" />
+                    </div>
                     <h2 className="text-3xl font-bold text-white text-center">Admin Portal</h2>
                     <p className="text-blue-100 text-center mt-2">Sign in to manage certificates</p>
                 </div>

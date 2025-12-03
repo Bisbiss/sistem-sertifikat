@@ -9,7 +9,8 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
                         <div className="flex justify-between h-16">
                             <div className="flex">
                                 <div className="shrink-0 flex items-center">
-                                    <span className="text-xl font-bold text-gray-800">Cert Admin</span>
+                                    <img src="/logo.png" alt="Logo" className="h-8 w-auto mr-3" />
+                                    <span className="text-xl font-bold text-gray-800">Sistem Sertifikat</span>
                                 </div>
                             </div>
                             <div className="flex items-center">
