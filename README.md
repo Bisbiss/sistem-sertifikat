@@ -1,36 +1,54 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Dynamic Certificate Generator System
 
-## Getting Started
+## Setup Instructions
 
-First, run the development server:
+### 1. Supabase Setup
+1. Create a new Supabase project.
+2. Go to the SQL Editor and run the contents of `supabase_schema.sql`.
+3. Go to Project Settings -> API and copy the `URL` and `anon` key.
+4. Create a `.env.local` file in the root directory (see `.env.local.example` if available, or use the format below):
+   ```
+   NEXT_PUBLIC_SUPABASE_URL=your-project-url
+   NEXT_PUBLIC_SUPABASE_ANON_KEY=your-anon-key
+   ```
+5. Go to Authentication -> Providers and enable Email/Password.
+6. Create an Admin user in the Authentication tab (or sign up via the API if you enable signups).
 
+### 2. Development
+Run the development server:
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### 3. Deployment (cPanel / Static Export)
+This project is configured for `output: 'export'`.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+1. Run the build command:
+   ```bash
+   npm run build
+   ```
+   This will create an `out` directory.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+2. Upload the contents of the `out` directory to your cPanel `public_html` (or a subdirectory).
 
-## Learn More
+3. **IMPORTANT: Dynamic Routes on Static Hosting**
+   Since we use dynamic routes (e.g., `/template-id`), accessing them directly might cause a 404 on cPanel because the file `template-id.html` doesn't exist (it's a Single Page App route).
+   
+   Create a `.htaccess` file in your deployment folder with the following content to redirect all requests to `index.html` (SPA fallback):
 
-To learn more about Next.js, take a look at the following resources:
+   ```apache
+   <IfModule mod_rewrite.c>
+     RewriteEngine On
+     RewriteBase /
+     RewriteRule ^index\.html$ - [L]
+     RewriteCond %{REQUEST_FILENAME} !-f
+     RewriteCond %{REQUEST_FILENAME} !-d
+     RewriteRule . /index.html [L]
+   </IfModule>
+   ```
+   (Adjust `RewriteBase` if you are deploying to a subdirectory, e.g., `RewriteBase /certificates/` and `RewriteRule . /certificates/index.html [L]`).
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Features
+- **Admin Dashboard**: Login, Create Templates, Interactive Mapper.
+- **User Page**: Fill form, Generate PDF.
+- **PDF Generation**: Client-side using `@react-pdf/renderer`.

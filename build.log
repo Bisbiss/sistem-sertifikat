@@ -1,0 +1,47 @@
+
+> sistem-sertifikat@0.1.0 build
+> next build
+
+ ⚠ `eslint` configuration in next.config.ts is no longer supported. See more info here: https://nextjs.org/docs/app/api-reference/cli/next#next-lint-options
+ ⚠ Invalid next.config.ts options detected: 
+ ⚠     Unrecognized key(s) in object: 'eslint'
+ ⚠ See more info here: https://nextjs.org/docs/messages/invalid-next-config
+   ▲ Next.js 16.0.6 (Turbopack)
+   - Environments: .env
+
+   Creating an optimized production build ...
+
+> Build error occurred
+Error: Turbopack build failed with 1 errors:
+./components/certificate/CertificateGenerator.tsx
+Code generation for chunk item errored
+An error occurred while generating the chunk item [project]/components/certificate/CertificateGenerator.tsx [app-ssr] (ecmascript)
+
+Caused by:
+- ModuleId not found for ident: "[externals]/@react-pdf/renderer [external] (@react-pdf/renderer, esm_import)"
+
+Debug info:
+- An error occurred while generating the chunk item [project]/components/certificate/CertificateGenerator.tsx [app-ssr] (ecmascript)
+- Execution of <MergedEcmascriptModuleChunkItem as EcmascriptChunkItem>::content_with_async_module_info failed
+- Execution of *EcmascriptChunkItemContent::new failed
+- Execution of EcmascriptModuleContent::new_merged failed
+- Execution of <GlobalModuleIdStrategy as ModuleIdStrategy>::get_module_id failed
+- ModuleId not found for ident: "[externals]/@react-pdf/renderer [external] (@react-pdf/renderer, esm_import)"
+
+Import traces:
+  Server Component:
+    ./components/certificate/CertificateGenerator.tsx
+    ./app/[templateId]/page.tsx
+
+  Client Component Browser:
+    ./components/certificate/CertificateGenerator.tsx [Client Component Browser]
+    ./app/view/page.tsx [Client Component Browser]
+    ./app/view/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./components/certificate/CertificateGenerator.tsx [Client Component SSR]
+    ./app/view/page.tsx [Client Component SSR]
+    ./app/view/page.tsx [Server Component]
+
+
+    at ignore-listed frames
