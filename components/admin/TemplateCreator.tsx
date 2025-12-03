@@ -397,7 +397,7 @@ export function TemplateCreator({ templateId }: { templateId?: string }) {
                                                                 type="checkbox"
                                                                 checked={field.isRequired}
                                                                 onChange={(e) => updateField(field.id, 'isRequired', e.target.checked)}
-                                                                className="rounded text-blue-600 focus:ring-blue-500 text-slate-950 border-gray-300"
+                                                                className="rounded text-slate-950 border-gray-300"
                                                             />
                                                             <span className="text-xs font-medium text-gray-700">Required</span>
                                                         </label>
@@ -459,7 +459,7 @@ export function TemplateCreator({ templateId }: { templateId?: string }) {
                                                                 type="checkbox"
                                                                 checked={field.isCenterX}
                                                                 onChange={(e) => updateField(field.id, 'isCenterX', e.target.checked)}
-                                                                className="rounded text-blue-600 focus:ring-blue-500 text-slate-950 border-gray-300"
+                                                                className="rounded text-slate-950 border-gray-300"
                                                             />
                                                             <span className="text-xs font-medium text-gray-700">Center Horizontally (X)</span>
                                                         </label>
@@ -468,7 +468,7 @@ export function TemplateCreator({ templateId }: { templateId?: string }) {
                                                                 type="checkbox"
                                                                 checked={field.isVisible}
                                                                 onChange={(e) => updateField(field.id, 'isVisible', e.target.checked)}
-                                                                className="rounded text-blue-600 focus:ring-blue-500 text-slate-950 border-gray-300"
+                                                                className="rounded text-slate-950 border-gray-300"
                                                             />
                                                             <span className="text-xs font-medium text-gray-700">Visible on Certificate</span>
                                                         </label>
